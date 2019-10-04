@@ -59,15 +59,15 @@ describe('Tests the Dogs routes', () => {
       );
     });
   });
+  function updateDoggo(dog, update) {
+    return request
+      .put(`/api/dogs/${dog._id}`)
+      .set('Authorization', user.token)
+      .send(update)
+      .expect(200)
+      .then(({ body }) => body);
+  }
   it('Updates a Doggo using the Put route, Only Owner can update', () => {
-    function updateDoggo(dog, update) {
-      return request
-        .put(`/api/dogs/${dog._id}`)
-        .set('Authorization', user.token)
-        .send(update)
-        .expect(200)
-        .then(({ body }) => body);
-    }
 
     let puppyUpdate = { hasPuppies: 5 };
 
@@ -98,6 +98,27 @@ describe('Tests the Dogs routes', () => {
         `
         );
       });
+    });
+  });
+  it('Should not allow different token to modify or delete a doggo', () => {
+    return postDoggo(testDoggo).then(body => {
+      db.dropCollection('users');
+      
+      let puppyUpdate = { isGoodDog: false };
+      user.token = 42;
+      return request
+        .put(`/api/dogs/${body._id}`)
+        .set('Authorization', user.token)
+        .send(puppyUpdate)
+        .expect(401);
+    });
+  });
+  it('Deletes a Doggo', () => {
+    return postDoggo(testDoggo).then(body => {
+      return request
+        .delete(`/api/dogs/${body._id}`)
+        .set('Authorization', user.token)
+        .expect(200);
     });
   });
 });
