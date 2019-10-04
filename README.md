@@ -19,7 +19,7 @@ Provide a "me" router:
 Provide a router for your entity (`cats` in this example)
 - [X] `POST /api/cats`
     - [ ] Add the authenticated user's id as the `owner` property
-- [ ] `PUT and DELETE` `/api/cats/:id`
+- [X] `PUT and DELETE` `/api/cats/:id`
     - [ ] In addition to the `:id`, limit to `owner` who is authenticated user
 - [ ] `GET /api/cats`
     - [ ] List of all cats, any authenticated user can access.
