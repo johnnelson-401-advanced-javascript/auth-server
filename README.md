@@ -1,9 +1,9 @@
 # User Management and Auth
 
 Implement the standard `auth` router. Feel free to add in-class work to your template!
-- [ ] `POST /api/auth/signup`
-- [ ] `POST /api/auth/signin`
-- [ ] `GET /api/auth/verify`
+- [X] `POST /api/auth/signup`
+- [X] `POST /api/auth/signin`
+- [X] `GET /api/auth/verify`
 
 Provide a "me" router:
 - [ ] `GET /api/me/favorites`
