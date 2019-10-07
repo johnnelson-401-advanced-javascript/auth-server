@@ -21,5 +21,5 @@ Provide a router for your entity (`dogs` in this example)
     - [x] Add the authenticated user's id as the `owner` property
 - [X] `PUT and DELETE` `/api/dogs/:id`
     - [x] In addition to the `:id`, limit to `owner` who is authenticated user
-- [x] `GET /api/dogs`
-    - [ ] List of all dogs, any authenticated user can access.
+- [X] `GET /api/dogs`
+    - [X] List of all dogs, any authenticated user can access.
