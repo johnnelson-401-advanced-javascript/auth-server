@@ -22,6 +22,17 @@ describe('Tests the Dogs routes', () => {
     isGoodDog: true,
     yearIntroduced: 1913
   };
+  const balto = {
+    name: 'Balto',
+    appearances: {
+      breed: 'husky',
+      mainColor: 'black'
+    },
+    hasPuppies: 0,
+    isGoodDog: true,
+    yearIntroduced: 1913
+  };
+
   function postDoggo(dog) {
     return request
       .post('/api/dogs')
@@ -68,7 +79,6 @@ describe('Tests the Dogs routes', () => {
       .then(({ body }) => body);
   }
   it('Updates a Doggo using the Put route, Only Owner can update', () => {
-
     let puppyUpdate = { hasPuppies: 5 };
 
     return postDoggo(testDoggo).then(body => {
@@ -100,10 +110,27 @@ describe('Tests the Dogs routes', () => {
       });
     });
   });
+
+  it('gets all doggos', () => {
+    return Promise.all([
+      postDoggo(testDoggo),
+      postDoggo(balto)
+    ])
+      .then(() => {
+        return request
+          .get('/api/dogs')
+          .set('Authorization', user.token);
+      })
+      .then(({ body }) => {
+        console.log(user.token);
+        expect(body.length).toBe(2);
+      });
+  });
+  
   it('Should not allow different token to modify or delete a doggo', () => {
     return postDoggo(testDoggo).then(body => {
       db.dropCollection('users');
-      
+
       let puppyUpdate = { isGoodDog: false };
       user.token = 42;
       return request
@@ -113,6 +140,7 @@ describe('Tests the Dogs routes', () => {
         .expect(401);
     });
   });
+  
   it('Deletes a Doggo', () => {
     return postDoggo(testDoggo).then(body => {
       return request
@@ -121,4 +149,5 @@ describe('Tests the Dogs routes', () => {
         .expect(200);
     });
   });
+
 });
