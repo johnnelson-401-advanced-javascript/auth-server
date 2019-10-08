@@ -84,4 +84,14 @@ describe('Tests routes for Me and favorites', () => {
         });
     });
   });
+  it('should delete a favorite', () => {
+    return postDoggo(testDoggo).then(results => {
+      expect(results.owner).toBe(user._id);
+      return favoriteDoggo(results, user).then(body => {
+        return request
+          .delete(`/api/me/favorites/${body.dog._id}`)
+          .expect(200);
+      });
+    });
+  });
 });
