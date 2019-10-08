@@ -60,7 +60,6 @@ describe('Tests routes for Me and favorites', () => {
             .then(body => body);
         })
         .then(({ body }) => {
-          console.log(body);
           expect(body).toMatchInlineSnapshot(
             {
               _id: expect.any(String),
@@ -84,13 +83,19 @@ describe('Tests routes for Me and favorites', () => {
         });
     });
   });
+
   it('should delete a favorite', () => {
     return postDoggo(testDoggo).then(results => {
-      expect(results.owner).toBe(user._id);
       return favoriteDoggo(results, user).then(body => {
+        console.log(body[0]);
+        console.log(results[0]);
         return request
-          .delete(`/api/me/favorites/${body.dog._id}`)
-          .expect(200);
+          .delete(`/api/me/favorites/${body[0]}`)
+          .set('Authorization', user.token)
+          .expect(200)
+          .then(res => {
+            (res);
+          });
       });
     });
   });

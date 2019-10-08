@@ -13,8 +13,8 @@ Provide a "me" router:
     - [X] "Add to Set" id to user favorites
     - [X] Return new favorites array from user model
 - [ ] `DELETE /api/me/favorites/<id-to-delete>`
-    - [ ] "Pull" id from user favorites
-    - [ ] Return new favorites array from user model
+    - [X] "Pull" id from user favorites
+    - [X] Return new favorites array from user model
 
 Provide a router for your entity (`dogs` in this example)
 - [X] `POST /api/dogs`
