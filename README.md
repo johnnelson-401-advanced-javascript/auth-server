@@ -6,9 +6,9 @@ Implement the standard `auth` router. Feel free to add in-class work to your tem
 - [X] `GET /api/auth/verify`
 
 Provide a "me" router:
-- [ ] `GET /api/me/favorites`
-    - [ ] Populate favorites on user model
-    - [ ] Return favorites property as response
+- [X] `GET /api/me/favorites`
+    - [X] Populate favorites on user model
+    - [X] Return favorites property as response
 - [ ] `PUT /api/me/favorites/<id-to-favorite>`
     - [ ] "Add to Set" id to user favorites
     - [ ] Return new favorites array from user model

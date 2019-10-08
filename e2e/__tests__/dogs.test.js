@@ -122,7 +122,6 @@ describe('Tests the Dogs routes', () => {
           .set('Authorization', user.token);
       })
       .then(({ body }) => {
-        console.log(user.token);
         expect(body.length).toBe(2);
       });
   });
