@@ -63,12 +63,20 @@ describe('Tests routes for Me and favorites', () => {
           console.log(body);
           expect(body).toMatchInlineSnapshot(
             {
-              0: expect.any(String)
+              ...body,
+              favorites: [expect.any(String)]
             },
 
             `
             Object {
-              "0": "5d9c26672c9633efb7614c5a",
+              "__v": 0,
+              "_id": "5d9cd1f2925bbeefb7848ae0",
+              "email": "me@me.com",
+              "favorites": Array [
+                Any<String>,
+              ],
+              "hash": "$2a$08$L3zyCfw6bLimEY/419NPyedOOrGrE1Hb2o4noAWQbdi38FMLeL7Vq",
+              "roles": Array [],
             }
           `
           );
