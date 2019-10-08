@@ -9,9 +9,9 @@ Provide a "me" router:
 - [X] `GET /api/me/favorites`
     - [X] Populate favorites on user model
     - [X] Return favorites property as response
-- [ ] `PUT /api/me/favorites/<id-to-favorite>`
-    - [ ] "Add to Set" id to user favorites
-    - [ ] Return new favorites array from user model
+- [X] `PUT /api/me/favorites/<id-to-favorite>`
+    - [X] "Add to Set" id to user favorites
+    - [X] Return new favorites array from user model
 - [ ] `DELETE /api/me/favorites/<id-to-delete>`
     - [ ] "Pull" id from user favorites
     - [ ] Return new favorites array from user model
