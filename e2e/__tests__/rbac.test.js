@@ -12,20 +12,27 @@ describe('Tests roles and ensure-role functionality', () => {
 
   let adminUser = null;
   beforeEach(() => {
-    return signupAdmin().then(newUser => (adminUser = newUser));
+    return signupAdmin().then(user => (adminUser = user));
   });
-  beforeEach(() => { return signupUser(testUser); 
+  let testUser = null;
+  beforeEach(() => { 
+    return signupUser().then(user => (testUser = user)
+    ); 
   });
 
-  let testUser = null;
 
 
   it('Makes a user an Admin', () => {
-    console.log(adminUser.roles);
     return request
-      .put(`/api/auth/users/${testUser.id}/roles/admin`)
+      .put(`/api/auth/users/${testUser._id}/roles/admin`)
       .set('Authorization', adminUser.token)
-      .expect(200);
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body);
+        
+        expect(body.roles[0]).toBe('admin');
+      });
+
   });
 
 
