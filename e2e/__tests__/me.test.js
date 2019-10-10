@@ -87,8 +87,6 @@ describe('Tests routes for Me and favorites', () => {
   it('should delete a favorite', () => {
     return postDoggo(testDoggo).then(results => {
       return favoriteDoggo(results, user).then(body => {
-        console.log(body[0]);
-        console.log(results[0]);
         return request
           .delete(`/api/me/favorites/${body[0]}`)
           .set('Authorization', user.token)

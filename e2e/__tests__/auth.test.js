@@ -2,7 +2,6 @@ const request = require('../request');
 const { dropCollection } = require('../db');
 const jwt = require('jsonwebtoken');
 
-
 describe('Auth API', () => {
 
   beforeEach(() => dropCollection('users'));
@@ -13,6 +12,7 @@ describe('Auth API', () => {
   };
 
   let user = null;
+
 
   beforeEach(() => {
     return request
@@ -98,6 +98,9 @@ describe('Auth API', () => {
       .set('Authorization', jwt.sign({ foo: 'bar' }, 'shhhhh'))
       .expect(401);
   });
+
+
+
 
 
 });
